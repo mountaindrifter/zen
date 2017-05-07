@@ -53,11 +53,13 @@ public:
         /**
          * ZEN Network Magic Start Value
          */
+
         pchMessageStart[0] = 0x63;
         pchMessageStart[1] = 0x61;
         pchMessageStart[2] = 0x73;
         pchMessageStart[3] = 0x68;
-        nDefaultPort = 8133;
+        vAlertPubKey = ParseHex("048679fb891b15d0cada9692047fd0ae26ad8bfb83fabddbb50334ee5bc0683294deb410be20513c5af6e7b9cec717ade82b27080ee6ef9a245c36a795ab044bb3");
+        nDefaultPort = 8033;
         nMinerThreads = 0;
         nMaxTipAge = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
@@ -116,7 +118,6 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
-        fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -126,11 +127,12 @@ public:
         checkpointData = (Checkpoints::CCheckpointData) {
             boost::assign::map_list_of
             ( 0, consensus.hashGenesisBlock)
-            ( 30000, uint256S("0x000000005c2ad200c3c7c8e627f67b306659efca1268c9bb014335fdadc0c392")),
-            1482914970,     // * UNIX timestamp of last checkpoint block
-            82372,          // * total number of transactions between genesis and last checkpoint
+            ( 30000, uint256S("0x000000005c2ad200c3c7c8e627f67b306659efca1268c9bb014335fdadc0c392"))
+            ( 96577, uint256S("0x0000000177751545bd1af3ccf276ec2920d258453ab01f3d2f8f7fcc5f3a37b8")),
+            1493090861,     // * UNIX timestamp of last checkpoint block
+            241684,         // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
-            1581            // * estimated number of transactions per day after checkpoint
+            1441            // * estimated number of transactions per day after checkpoint
                             //   total number of tx / (checkpoint block height / (24 * 24))
         };
 
@@ -215,7 +217,8 @@ public:
         pchMessageStart[1] = 0xf2;
         pchMessageStart[2] = 0xcd;
         pchMessageStart[3] = 0xe6;
-        nDefaultPort = 18233;
+        vAlertPubKey = ParseHex("048679fb891b15d0cada9692047fd0ae26ad8bfb83fabddbb50334ee5bc0683294deb410be20513c5af6e7b9cec717ade82b27080ee6ef9a245c36a795ab044bb3");
+        nDefaultPort = 18033;
         nMinerThreads = 0;
         nPruneAfterHeight = 1000;
 
@@ -247,7 +250,6 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
-        fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
@@ -324,7 +326,6 @@ public:
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.
 
-        fRequireRPCPassword = false;
         fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = true;
         fRequireStandard = false;

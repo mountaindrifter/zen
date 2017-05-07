@@ -38,7 +38,7 @@ function fetch_params {
                 "$url"
         fi
 
-        "$SHA256CMD" $SHA256ARGS --check <<EOF
+        "$SHA256CMD" $SHA256ARGS -c <<EOF
 $expectedhash  $dlname
 EOF
 
@@ -59,7 +59,7 @@ function lock() {
     # create lock file
     eval "exec 200>/$lockfile"
     # acquire the lock
-    gflock -n 200 \
+    flock -n 200 \
         && return 0 \
         || return 1
 }
